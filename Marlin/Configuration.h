@@ -22,13 +22,6 @@
 #pragma once
 
 /**
- * Creality CD-10 V3 options
- */
-
-// Is the BLTouch option installed?
-#define CR10V3_BLTOUCH
-
-/**
  * Configuration.h
  *
  * Basic settings such as:
@@ -1042,10 +1035,8 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
-#if ENABLED(CR10V3_BLTOUCH)
-  #define USE_PROBE_FOR_Z_HOMING
-#endif
+#define USE_PROBE_FOR_Z_HOMING
+
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1063,10 +1054,6 @@
  *      - normally-open switches to 5V and D32.
  */
 //#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
-
-#if ENABLED(CR10V3_BLTOUCH)
-  //#define Z_MIN_PROBE_PIN 19
-#endif
 
 /**
  * Probe Type
@@ -1103,9 +1090,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-#if ENABLED(CR10V3_BLTOUCH)
   #define BLTOUCH
-#endif
 
 /**
  * Touch-MI Probe by hotends.fr
@@ -1278,9 +1263,8 @@
 #define Z_PROBE_OFFSET_RANGE_MAX 9
 
 // Enable the M48 repeatability test to test probe accuracy
-#if ENABLED(CR10V3_BLTOUCH)
   #define Z_MIN_PROBE_REPEATABILITY_TEST
-#endif
+
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -1559,9 +1543,8 @@
  */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#if ENABLED(CR10V3_BLTOUCH)
-  #define AUTO_BED_LEVELING_BILINEAR
-#endif
+#define AUTO_BED_LEVELING_BILINEAR
+
 //#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
@@ -1570,10 +1553,7 @@
  * these options to restore the prior leveling state or to always enable
  * leveling immediately after G28.
  */
-#if ENABLED(CR10V3_BLTOUCH)
-  #define RESTORE_LEVELING_AFTER_G28
-#endif
-//#define ENABLE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Auto-leveling needs preheating
@@ -1694,9 +1674,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#if ENABLED(CR10V3_BLTOUCH)
-  #define LCD_BED_LEVELING
-#endif
+#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -1711,10 +1689,8 @@
   #define LEVEL_CORNERS_INSET_LFRB { 45, 45, 45, 45 } // (mm) Left, Front, Right, Back insets
   #define LEVEL_CORNERS_HEIGHT      0.0   // (mm) Z height of nozzle at leveling points
   #define LEVEL_CORNERS_Z_HOP       4.0   // (mm) Z height of nozzle between leveling points
-  #define LEVEL_CENTER_TOO              // Move to the center after the last corner
-  #if ENABLED(CR10V3_BLTOUCH)
+  #define LEVEL_CENTER_TOO              // Move to the center after the last corner)
     #define LEVEL_CORNERS_USE_PROBE
-  #endif
   #if ENABLED(LEVEL_CORNERS_USE_PROBE)
     #define LEVEL_CORNERS_PROBE_TOLERANCE 0.1
     #define LEVEL_CORNERS_VERIFY_RAISED   // After adjustment triggers the probe, re-probe to verify
@@ -1768,9 +1744,7 @@
  * - Allows Z homing only when XY positions are known and trusted.
  * - If stepper drivers sleep, XY homing may be required again before Z homing.
  */
-#if ENABLED(CR10V3_BLTOUCH)
   #define Z_SAFE_HOMING
-#endif
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
